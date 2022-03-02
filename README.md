@@ -26,5 +26,5 @@ One of the recommended options are the wheels at <https://tf.novaal.de/barcelona
 Get the link to the relevant version and pass it in the `TENSORFLOW` build-arg:
 
 ```console
-docker build -t my-tag --build-arg TENSORFLOW='https://tf.novaal.de/barcelona/tensorflow-2.8.0-cp39-cp39-linux_x86_64.whl' .
+docker build -t aclementev/python-opencv-tf-sensenet:py3.9-cv4.5.5-tf2.8.0 --build-arg TENSORFLOW=https://tf.novaal.de/barcelona/tensorflow-2.8.0-cp39-cp39-linux_x86_64.whl .
 ```
