@@ -38,7 +38,6 @@ docker build -t aclementev/python-opencv-tf-sensenet:py3.9-cv4.5.5-tf2.8.0-arm64
 That way you can conditionally select them any Docker image that inherits from these ones, like this:
 
 ```dockerfile
-ARG TARGETARCH
 FROM clementebigml/python-opencv-tf-sensenet:py3.9-cv4.5.5-tf2.8.0-${TARGETARCH}
 ```
 
