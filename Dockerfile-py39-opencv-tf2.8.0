@@ -1,0 +1,16 @@
+FROM python:3.9.10-slim-bullseye
+
+LABEL maintainer="clemente@bigml.com"
+
+# This is a default build-arg passed by docker `buildx` backend
+ARG FORAARCH64
+
+# Install the right version of tensorflow based on the target platform
+# Which by default is 'linux/amd64'. To modify it use the --platform flag for
+# docker build (using docker buildx/BuildKit backend)
+RUN if [ "$FORAARCH64" = "1" ]; then \
+    python -m pip install 'https://tf.novaal.de/barcelona/tensorflow-2.8.0-cp39-cp39-linux_x86_64.whl' && \
+    python -m pip install opencv-python-headless; \
+else \
+    python -m pip install "tensorflow==2.8.0" opencv-python-headless; \
+fi
