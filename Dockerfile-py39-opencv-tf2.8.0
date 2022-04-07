@@ -2,12 +2,13 @@ FROM python:3.9.10-slim-bullseye
 
 LABEL maintainer="clemente@bigml.com"
 
-# This is a default build-arg passed by docker `buildx` backend
+# use --build-arg FORAARCH64=1 to build a version of this image that will run on mac M1
 ARG FORAARCH64
 
-# Install the right version of tensorflow based on the target platform
-# Which by default is 'linux/amd64'. To modify it use the --platform flag for
-# docker build (using docker buildx/BuildKit backend)
+# These images are designed to be targeted to a 'linux/amd64' platform only
+# even when running on mac M1. The compatibility is intruduced in the particular
+# x86_64 version of tensorflow that is installed, that is compatible with the
+# current state of Rosetta2
 RUN if [ "$FORAARCH64" = "1" ]; then \
     python -m pip install 'https://tf.novaal.de/barcelona/tensorflow-2.8.0-cp39-cp39-linux_x86_64.whl' && \
     python -m pip install opencv-python-headless; \
